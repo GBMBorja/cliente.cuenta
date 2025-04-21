@@ -18,3 +18,26 @@ curl --location --request GET 'localhost:8080/clientes/1' \
   "genero": "M",
   "edad":30
   }'
+
+  El Segundo microservicio que realiza la creacion de cuentas y movimientos que consume el prier servico via webflux usa el siguinete puerto 8081:
+   su curl es:
+    curl --location 'localhost:8081/cuentas' \
+--header 'Content-Type: application/json' \
+--data '{
+  "numeroCuenta": "1234567890",
+  "tipoCuenta": "Ahorro",
+  "estado": true,
+  "clienteId": "1720445715",
+  "saldoInicial":250
+}'
+
+
+curl --location 'localhost:8081/movimientos' \
+--header 'Content-Type: application/json' \
+--data '{
+  "fecha": "2025-04-21T10:00:00",
+  "tipoMovimiento": "DEPOSITO",   
+  "valor": 500.00,
+  "saldo": 1500.00,
+  "numeroCuenta": "1234567890"
+}'
